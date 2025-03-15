@@ -14,7 +14,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { label: "Who we are", path: "/" },
+  { label: "Home", path: "/" },
   { label: "About Us", path: "/about" },
   { label: "Services", path: "/services" },
 ];
@@ -46,7 +46,7 @@ export const Navbar = () => {
 
           {/* Toggle Menu */}
           <button
-            className="lg:hidden p-2 hover:bg-white/10 rounded-full transition-colors"
+            className="lg:hidden p-2 hover:bg-white/10 rounded-full"
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
@@ -60,13 +60,13 @@ export const Navbar = () => {
           {/* Nav menu */}
           <div className="hidden lg:flex items-center gap-6 ">
             {navItems.map((item, index) => (
-              <div className="" key={index}>
+              <div className="text-white" key={index}>
                 <Link
                   href={item.path}
-                  className={`transition-colors
+                  className={`
                     ${
                       isActive(item.path) &&
-                      "rounded-full px-3 py-2 text-black bg-white border border-black hover:text-gray-900"
+                      "rounded-full px-3 py-2 !text-blue font-bold bg-white border border-blue"
                     }  
                     `}
                 >
