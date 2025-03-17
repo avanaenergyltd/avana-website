@@ -1,0 +1,70 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "blood",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "hungry",
+				"type": "Text"
+			},
+			"items": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"i_d",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "space",
+									"type": "Text"
+								}
+							],
+							[
+								"text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "curious",
+									"type": "Text"
+								}
+							],
+							[
+								"image",
+								{
+									"__TYPE__": "ImageContent",
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+										"width": 4160,
+										"height": 3120
+									},
+									"url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+									"width": 4160,
+									"height": 3120,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "although",
+									"thumbnails": {}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

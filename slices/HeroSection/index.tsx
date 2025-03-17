@@ -1,6 +1,5 @@
 "use client";
 
-import { containerVariants, itemVariants } from "@/lib/animation";
 import { staticBlurDataUrl } from "@/lib/staticBlurUrl";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
@@ -68,9 +67,9 @@ const HeroSection: FC<HeroSectionProps> = ({ slice }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="font-extrabold text-2xl md:text-4xl lg:text-6xl xl:text-9xl text-white max-w-[70vw]"
+            className="font-extrabold text-2xl md:text-4xl lg:text-6xl xl:text-8xl text-white max-w-[57rem]"
           >
-            Powering Dreams, Empowering Africa
+            Powering Dreams, <br /> Empowering Africa
           </motion.h1>
         </div>
       </div>
