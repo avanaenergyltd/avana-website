@@ -26,12 +26,17 @@ const HeroSection: FC<HeroSectionProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="relative flex overflow-hidden lg:h-dvh w-full"
     >
-      <div className="bg-black/20 w-full h-full absolute z-[2]"></div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="bg-black/20 w-full h-full absolute z-[2] inset-0 bg-gradient-to-b from-transparent from-60% to-black lg:from-30%"
+      ></motion.div>
 
       <motion.div
-        initial={{ scale: 1.5 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2, ease: [0.6, 0.01, -0.05, 0.9] }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       >
         <PrismicNextImage
           field={slice.primary.image}
@@ -49,7 +54,7 @@ const HeroSection: FC<HeroSectionProps> = ({ slice }) => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.75 }}
+            transition={{ duration: 1, delay: 0.75 }}
           >
             <PrismicNextLink
               field={slice.primary.link}
@@ -66,7 +71,7 @@ const HeroSection: FC<HeroSectionProps> = ({ slice }) => {
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ duration: 1, delay: 1 }}
             className="font-extrabold text-2xl md:text-4xl lg:text-6xl xl:text-8xl text-white max-w-[57rem]"
           >
             Powering Dreams, <br /> Empowering Africa
@@ -78,7 +83,7 @@ const HeroSection: FC<HeroSectionProps> = ({ slice }) => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.25 }}
+          transition={{ duration: 1, delay: 1.25 }}
           className="hidden lg:flex text-lg max-w-[30vw] text-white backdrop-blur-md bg-white/30 px-4 rounded-lg py-1"
         >
           {slice.primary.text}

@@ -4,7 +4,13 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomeDocumentDataSlicesSlice = TextImageLeftSlice | HeroSectionSlice;
+type HomeDocumentDataSlicesSlice =
+  | ContactCardSlice
+  | ImageTextLeftSlice
+  | ParallexImageRightSlice
+  | ParallexImageLeftSlice
+  | TextImageLeftSlice
+  | HeroSectionSlice;
 
 /**
  * Content for Home documents
@@ -66,6 +72,97 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 export type AllDocumentTypes = HomeDocument;
+
+/**
+ * Primary content in *ContactCard → Default → Primary*
+ */
+export interface ContactCardSliceDefaultPrimary {
+  /**
+   * subtitle field in *ContactCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_card.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * title field in *ContactCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_card.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * link url field in *ContactCard → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_card.default.primary.link_url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * link text field in *ContactCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_card.default.primary.link_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_text: prismic.KeyTextField;
+
+  /**
+   * image field in *ContactCard → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_card.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ContactCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactCardSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContactCardSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContactCard*
+ */
+type ContactCardSliceVariation = ContactCardSliceDefault;
+
+/**
+ * ContactCard Shared Slice
+ *
+ * - **API ID**: `contact_card`
+ * - **Description**: ContactCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactCardSlice = prismic.SharedSlice<
+  "contact_card",
+  ContactCardSliceVariation
+>;
 
 /**
  * Primary content in *HeroSection → Default → Primary*
@@ -130,6 +227,282 @@ type HeroSectionSliceVariation = HeroSectionSliceDefault;
 export type HeroSectionSlice = prismic.SharedSlice<
   "hero_section",
   HeroSectionSliceVariation
+>;
+
+/**
+ * Item in *ImageTextLeft → Default → Primary → items*
+ */
+export interface ImageTextLeftSliceDefaultPrimaryItemsItem {
+  /**
+   * text field in *ImageTextLeft → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_text_left.default.primary.items[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ImageTextLeft → Default → Primary*
+ */
+export interface ImageTextLeftSliceDefaultPrimary {
+  /**
+   * title field in *ImageTextLeft → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_text_left.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *ImageTextLeft → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_text_left.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * image field in *ImageTextLeft → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_text_left.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * items field in *ImageTextLeft → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_text_left.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<
+    Simplify<ImageTextLeftSliceDefaultPrimaryItemsItem>
+  >;
+}
+
+/**
+ * Default variation for ImageTextLeft Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageTextLeftSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageTextLeftSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ImageTextLeft*
+ */
+type ImageTextLeftSliceVariation = ImageTextLeftSliceDefault;
+
+/**
+ * ImageTextLeft Shared Slice
+ *
+ * - **API ID**: `image_text_left`
+ * - **Description**: ImageTextLeft
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageTextLeftSlice = prismic.SharedSlice<
+  "image_text_left",
+  ImageTextLeftSliceVariation
+>;
+
+/**
+ * Item in *ParallexImageLeft → Default → Primary → items*
+ */
+export interface ParallexImageLeftSliceDefaultPrimaryItemsItem {
+  /**
+   * text field in *ParallexImageLeft → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_left.default.primary.items[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ParallexImageLeft → Default → Primary*
+ */
+export interface ParallexImageLeftSliceDefaultPrimary {
+  /**
+   * title field in *ParallexImageLeft → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_left.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *ParallexImageLeft → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_left.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * image field in *ParallexImageLeft → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_left.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * items field in *ParallexImageLeft → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_left.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<
+    Simplify<ParallexImageLeftSliceDefaultPrimaryItemsItem>
+  >;
+}
+
+/**
+ * Default variation for ParallexImageLeft Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ParallexImageLeftSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ParallexImageLeftSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ParallexImageLeft*
+ */
+type ParallexImageLeftSliceVariation = ParallexImageLeftSliceDefault;
+
+/**
+ * ParallexImageLeft Shared Slice
+ *
+ * - **API ID**: `parallex_image_left`
+ * - **Description**: ParallexImageLeft
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ParallexImageLeftSlice = prismic.SharedSlice<
+  "parallex_image_left",
+  ParallexImageLeftSliceVariation
+>;
+
+/**
+ * Item in *ParallexImageRight → Default → Primary → items*
+ */
+export interface ParallexImageRightSliceDefaultPrimaryItemsItem {
+  /**
+   * text field in *ParallexImageRight → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_right.default.primary.items[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ParallexImageRight → Default → Primary*
+ */
+export interface ParallexImageRightSliceDefaultPrimary {
+  /**
+   * title field in *ParallexImageRight → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_right.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *ParallexImageRight → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_right.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * image field in *ParallexImageRight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_right.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * items field in *ParallexImageRight → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: parallex_image_right.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<
+    Simplify<ParallexImageRightSliceDefaultPrimaryItemsItem>
+  >;
+}
+
+/**
+ * Default variation for ParallexImageRight Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ParallexImageRightSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ParallexImageRightSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ParallexImageRight*
+ */
+type ParallexImageRightSliceVariation = ParallexImageRightSliceDefault;
+
+/**
+ * ParallexImageRight Shared Slice
+ *
+ * - **API ID**: `parallex_image_right`
+ * - **Description**: ParallexImageRight
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ParallexImageRightSlice = prismic.SharedSlice<
+  "parallex_image_right",
+  ParallexImageRightSliceVariation
 >;
 
 /**
@@ -259,10 +632,29 @@ declare module "@prismicio/client" {
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ContactCardSlice,
+      ContactCardSliceDefaultPrimary,
+      ContactCardSliceVariation,
+      ContactCardSliceDefault,
       HeroSectionSlice,
       HeroSectionSliceDefaultPrimary,
       HeroSectionSliceVariation,
       HeroSectionSliceDefault,
+      ImageTextLeftSlice,
+      ImageTextLeftSliceDefaultPrimaryItemsItem,
+      ImageTextLeftSliceDefaultPrimary,
+      ImageTextLeftSliceVariation,
+      ImageTextLeftSliceDefault,
+      ParallexImageLeftSlice,
+      ParallexImageLeftSliceDefaultPrimaryItemsItem,
+      ParallexImageLeftSliceDefaultPrimary,
+      ParallexImageLeftSliceVariation,
+      ParallexImageLeftSliceDefault,
+      ParallexImageRightSlice,
+      ParallexImageRightSliceDefaultPrimaryItemsItem,
+      ParallexImageRightSliceDefaultPrimary,
+      ParallexImageRightSliceVariation,
+      ParallexImageRightSliceDefault,
       TextImageLeftSlice,
       TextImageLeftSliceDefaultPrimaryItemsItem,
       TextImageLeftSliceDefaultPrimary,

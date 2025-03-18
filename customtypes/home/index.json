@@ -11,6 +11,18 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "contact_card": {
+              "type": "SharedSlice"
+            },
+            "image_text_left": {
+              "type": "SharedSlice"
+            },
+            "parallex_image_right": {
+              "type": "SharedSlice"
+            },
+            "parallex_image_left": {
+              "type": "SharedSlice"
+            },
             "text_image_left": {
               "type": "SharedSlice"
             },
