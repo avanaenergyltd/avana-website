@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import MobileNavLink from "./MobileNavLink";
+import { MobileNavLink } from "./MobileNavLink";
 
 type NavItem = {
   label: string;

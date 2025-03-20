@@ -35,5 +35,3 @@ export function MobileNavLink({ href, title }: MobileNavLinkProps) {
     </motion.div>
   );
 }
-
-export default MobileNavLink;

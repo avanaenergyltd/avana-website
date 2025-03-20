@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { MenuProvider } from "@/components/Nav/MenuContext";
 import { Navbar } from "@/components/Nav/Bar";
+import { Footer } from "@/components/Footer";
 
 const plusJakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700", "800"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <MenuProvider>
           <Navbar />
           <main className="flex-grow-[1]">{children}</main>
+          <Footer />
         </MenuProvider>
       </body>
     </html>

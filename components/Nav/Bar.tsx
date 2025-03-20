@@ -2,7 +2,6 @@
 
 import { Menu, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
-// import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMenu } from "./MenuContext";
@@ -75,9 +74,6 @@ export const Navbar = () => {
               </div>
             ))}
           </div>
-
-          {/* Button */}
-          {/* <Button text="Start Consultation" type="button" /> */}
         </div>
       </nav>
       <AnimatePresence>{isOpen && <MobileNavMenu />}</AnimatePresence>
