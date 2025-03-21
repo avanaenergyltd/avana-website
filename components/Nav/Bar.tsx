@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMenu } from "./MenuContext";
 import { MobileNavMenu } from "./MobileMenu";
+import Image from "next/image";
 
 type NavItem = {
   label: string;
@@ -31,16 +32,17 @@ export const Navbar = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="flex flex-row space-x-4 items-center text-[1rem] md:text-2xl font-bold text-white hover:opacity-90 transition-opacity"
+            className="flex space-x-2 items-center text-[1rem] md:text-2xl font-bold text-white"
           >
-            {/* <Image
-              src="/images/msf-logo.png"
-              alt="Msf-logo"
-              width={50}
-              height={50}
-              priority
-            /> */}
-            <span>Avana Energy</span>
+              <Image
+                src="/images/avana-logo.png"
+                alt="avana-logo"
+                width={50}
+                height={50}
+                className="object-contain"
+                priority
+              />
+            <span className="">Avana Energy</span>
           </Link>
 
           {/* Toggle Menu */}
@@ -57,12 +59,12 @@ export const Navbar = () => {
           </button>
 
           {/* Nav menu */}
-          <div className="hidden lg:flex items-center gap-6 ">
+          <div className="hidden lg:flex items-center gap-6 text-black backdrop-blur-md bg-white/30 p-4 rounded-full">
             {navItems.map((item, index) => (
               <div className="text-white" key={index}>
                 <Link
                   href={item.path}
-                  className={`
+                  className={`text-black
                     ${
                       isActive(item.path) &&
                       "rounded-full px-3 py-2 !text-blue font-bold bg-white border border-blue"
