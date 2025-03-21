@@ -70,19 +70,21 @@ const ImageTextLeft: FC<ImageTextLeftProps> = ({ slice }) => {
 
             {/* Bullet points */}
 
-            {slice.primary.items.map((item, index) => {
-              const IconComponent = iconsArray.get(index);
-              return (
-                IconComponent && (
-                  <div key={index} className="space-x-8 relative mb-8 md:mb-4">
-                    <IconComponent className="size-8 rounded-full bg-blue text-white px-2 border border-black" />
-                    <span className="absolute -top-2 left-12 inline-flex text-[1.125rem]">
-                      {item.text}
-                    </span>
-                  </div>
-                )
-              );
-            })}
+            <div className="flex flex-col gap-y-8">
+              {slice.primary.items.map((item, index) => {
+                const IconComponent = iconsArray.get(index);
+                return (
+                  IconComponent && (
+                    <div key={index} className="flex items-start gap-x-4">
+                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue text-white border border-black shrink-0">
+                        <IconComponent className="w-6 h-6 min-w-min min-h-min" />
+                      </div>
+                      <span className="text-[1.125rem]">{item.text}</span>
+                    </div>
+                  )
+                );
+              })}
+            </div>
           </motion.div>
         </div>
       </div>

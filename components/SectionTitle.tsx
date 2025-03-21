@@ -15,7 +15,7 @@ export function SectionTitle({ text }: SectionTitleProps) {
       viewport={{ once: true }}
       className="flex items-center justify-start gap-x-2 md:gap-x-4"
     >
-      <div className="w-2 bg-blue relative h-12 xl:h-32"></div>
+      <div className="w-2 bg-blue relative self-stretch"></div>
       <h1 className="text-[2rem] md:text-[2.6rem] xl:text-[4.5rem] font-bold leading-[1.115em]">
         {text}
       </h1>

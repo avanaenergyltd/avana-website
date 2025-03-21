@@ -3,10 +3,13 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  choice_block: dynamic(() => import("./ChoiceBlock")),
   contact_card: dynamic(() => import("./ContactCard")),
+  hero_block: dynamic(() => import("./HeroBlock")),
   hero_section: dynamic(() => import("./HeroSection")),
   image_text_left: dynamic(() => import("./ImageTextLeft")),
   parallex_image_left: dynamic(() => import("./ParallexImageLeft")),
   parallex_image_right: dynamic(() => import("./ParallexImageRight")),
+  section_title: dynamic(() => import("./SectionTitle")),
   text_image_left: dynamic(() => import("./TextImageLeft")),
 };

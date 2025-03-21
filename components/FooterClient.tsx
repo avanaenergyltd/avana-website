@@ -38,11 +38,11 @@ export const FooterClient = (props: FooterProps): JSX.Element => {
           <div className="grid lg:grid-cols-3 lg:items-center gap-4 xl:gap-16">
             {/* Logo and Description */}
             <div className="flex flex-col gap-y-4">
-              <h1 className="capitalize text-lime text-2xl font-bold">{title}</h1>
+              <h1 className="capitalize text-lime text-2xl font-bold">
+                {title}
+              </h1>
 
               <h2 className="text-xl text-white/80">{description}</h2>
-
-              <p className="text-green/30">{`${year} ${copyright}`}</p>
             </div>
             {/* Navigation Links */}
             <div>
@@ -67,7 +67,7 @@ export const FooterClient = (props: FooterProps): JSX.Element => {
 
             {/* Navigation Links */}
             <div className="">
-              <div className="flex flex-col lg:items-end">
+              <div className="flex flex-col lg:items-center xl:items-end">
                 <span className="text-green mt-16 lg:mt-0 lg:mb-8 font-aktiv font-bold uppercase">
                   contact
                 </span>
@@ -93,6 +93,10 @@ export const FooterClient = (props: FooterProps): JSX.Element => {
           </div>
         </div>
         <BackToTopBtn />
+
+        <div className="max-w-xl lg:max-w-7xl mx-auto py-4 text-center">
+          <p className="text-green/30">{`${year} ${copyright}`}</p>
+        </div>
 
         <div className="max-w-xl lg:max-w-7xl mx-auto pt-8 text-center">
           <h1 className="text-5xl md:text-7xl xl:text-9xl font-bold uppercase bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">

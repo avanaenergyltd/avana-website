@@ -208,7 +208,169 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-export type AllDocumentTypes = FooterDocument | HomeDocument;
+type ServicesDocumentDataSlicesSlice =
+  | ChoiceBlockSlice
+  | ContactCardSlice
+  | ParallexImageRightSlice
+  | SectionTitleSlice
+  | ImageTextLeftSlice
+  | HeroBlockSlice;
+
+/**
+ * Content for Services documents
+ */
+interface ServicesDocumentData {
+  /**
+   * Slice Zone field in *Services*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice> /**
+   * Meta Title field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: services.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: services.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * keywords field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.keywords
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  keywords: prismic.KeyTextField;
+}
+
+/**
+ * Services document from Prismic
+ *
+ * - **API ID**: `services`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ServicesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ServicesDocumentData>,
+    "services",
+    Lang
+  >;
+
+export type AllDocumentTypes = FooterDocument | HomeDocument | ServicesDocument;
+
+/**
+ * Item in *ChoiceBlock → Default → Primary → items*
+ */
+export interface ChoiceBlockSliceDefaultPrimaryItemsItem {
+  /**
+   * title field in *ChoiceBlock → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: choice_block.default.primary.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *ChoiceBlock → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: choice_block.default.primary.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ChoiceBlock → Default → Primary*
+ */
+export interface ChoiceBlockSliceDefaultPrimary {
+  /**
+   * title field in *ChoiceBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: choice_block.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * items field in *ChoiceBlock → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: choice_block.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<ChoiceBlockSliceDefaultPrimaryItemsItem>>;
+}
+
+/**
+ * Default variation for ChoiceBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ChoiceBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ChoiceBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ChoiceBlock*
+ */
+type ChoiceBlockSliceVariation = ChoiceBlockSliceDefault;
+
+/**
+ * ChoiceBlock Shared Slice
+ *
+ * - **API ID**: `choice_block`
+ * - **Description**: ChoiceBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ChoiceBlockSlice = prismic.SharedSlice<
+  "choice_block",
+  ChoiceBlockSliceVariation
+>;
 
 /**
  * Primary content in *ContactCard → Default → Primary*
@@ -299,6 +461,91 @@ type ContactCardSliceVariation = ContactCardSliceDefault;
 export type ContactCardSlice = prismic.SharedSlice<
   "contact_card",
   ContactCardSliceVariation
+>;
+
+/**
+ * Primary content in *HeroBlock → Default → Primary*
+ */
+export interface HeroBlockSliceDefaultPrimary {
+  /**
+   * title field in *HeroBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_block.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *HeroBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * image field in *HeroBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_block.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * image text field in *HeroBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_block.default.primary.image_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  image_text: prismic.KeyTextField;
+
+  /**
+   * section title field in *HeroBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_block.default.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  section_title: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for HeroBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeroBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HeroBlock*
+ */
+type HeroBlockSliceVariation = HeroBlockSliceDefault;
+
+/**
+ * HeroBlock Shared Slice
+ *
+ * - **API ID**: `hero_block`
+ * - **Description**: HeroBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroBlockSlice = prismic.SharedSlice<
+  "hero_block",
+  HeroBlockSliceVariation
 >;
 
 /**
@@ -643,6 +890,51 @@ export type ParallexImageRightSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *SectionTitle → Default → Primary*
+ */
+export interface SectionTitleSliceDefaultPrimary {
+  /**
+   * title field in *SectionTitle → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_title.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for SectionTitle Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionTitleSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SectionTitleSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SectionTitle*
+ */
+type SectionTitleSliceVariation = SectionTitleSliceDefault;
+
+/**
+ * SectionTitle Shared Slice
+ *
+ * - **API ID**: `section_title`
+ * - **Description**: SectionTitle
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionTitleSlice = prismic.SharedSlice<
+  "section_title",
+  SectionTitleSliceVariation
+>;
+
+/**
  * Item in *TextImageLeft → Default → Primary → items*
  */
 export interface TextImageLeftSliceDefaultPrimaryItemsItem {
@@ -772,11 +1064,23 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      ServicesDocument,
+      ServicesDocumentData,
+      ServicesDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ChoiceBlockSlice,
+      ChoiceBlockSliceDefaultPrimaryItemsItem,
+      ChoiceBlockSliceDefaultPrimary,
+      ChoiceBlockSliceVariation,
+      ChoiceBlockSliceDefault,
       ContactCardSlice,
       ContactCardSliceDefaultPrimary,
       ContactCardSliceVariation,
       ContactCardSliceDefault,
+      HeroBlockSlice,
+      HeroBlockSliceDefaultPrimary,
+      HeroBlockSliceVariation,
+      HeroBlockSliceDefault,
       HeroSectionSlice,
       HeroSectionSliceDefaultPrimary,
       HeroSectionSliceVariation,
@@ -796,6 +1100,10 @@ declare module "@prismicio/client" {
       ParallexImageRightSliceDefaultPrimary,
       ParallexImageRightSliceVariation,
       ParallexImageRightSliceDefault,
+      SectionTitleSlice,
+      SectionTitleSliceDefaultPrimary,
+      SectionTitleSliceVariation,
+      SectionTitleSliceDefault,
       TextImageLeftSlice,
       TextImageLeftSliceDefaultPrimaryItemsItem,
       TextImageLeftSliceDefaultPrimary,

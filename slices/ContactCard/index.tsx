@@ -25,29 +25,31 @@ const ContactCard: FC<ContactCardProps> = ({ slice }) => {
       className="py-16"
     >
       <div className="container">
-        <div className="relative flex overflow-hidden w-full md:max-h-[60dvh] rounded-md">
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="relative flex overflow-hidden w-full md:max-h-[60dvh] rounded-md"
+        >
           <div className="w-full h-full absolute z-[2] bg-black/50"></div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <PrismicNextImage
-              field={slice.primary.image}
-              width={slice.primary.image.dimensions?.width}
-              height={slice.primary.image.dimensions?.height}
-              placeholder="blur"
-              blurDataURL={getBlurSvg}
-              className="size-full object-cover object-top transition-transform duration-700 group-hover/image:scale-105 cursor-pointer"
-            />
-          </motion.div>
+
+          <PrismicNextImage
+            field={slice.primary.image}
+            width={slice.primary.image.dimensions?.width}
+            height={slice.primary.image.dimensions?.height}
+            placeholder="blur"
+            blurDataURL={getBlurSvg}
+            className="size-full object-cover object-top transition-transform duration-700 group-hover/image:scale-105 cursor-pointer"
+          />
 
           {/* text */}
           <div className="absolute z-[3] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-y-8">
             <motion.p
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.25 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.25 }}
+              viewport={{ once: true }}
               className="hidden md:flex text-xl w-[fit-content] text-white backdrop-blur-md bg-white/30 px-4 rounded-full py-2 space-x-2"
             >
               <span>
@@ -86,7 +88,7 @@ const ContactCard: FC<ContactCardProps> = ({ slice }) => {
               </PrismicNextLink>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
