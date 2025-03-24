@@ -22,7 +22,7 @@ const HeroBlock: FC<HeroBlockProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="py-32"
+      className="pt-32"
     >
       <div className="container">
         <div className="flex flex-col gap-y-8">

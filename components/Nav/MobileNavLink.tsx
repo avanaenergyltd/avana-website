@@ -1,10 +1,12 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useMenu } from "./MenuContext";
+import clsx from "clsx";
 
 type MobileNavLinkProps = {
   href: string;
   title: string;
+  className: string | boolean;
 };
 
 const mobileLinkVariants = {
@@ -21,13 +23,13 @@ const mobileLinkVariants = {
   },
 };
 
-export function MobileNavLink({ href, title }: MobileNavLinkProps) {
+export function MobileNavLink({ href, title, className }: MobileNavLinkProps) {
   const { toggleMenu } = useMenu();
 
   return (
     <motion.div
       variants={mobileLinkVariants}
-      className="text-white text-4xl uppercase"
+      className={clsx("text-white text-4xl uppercase", className)}
     >
       <Link href={href} onClick={toggleMenu}>
         {title}

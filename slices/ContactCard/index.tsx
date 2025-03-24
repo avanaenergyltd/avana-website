@@ -55,7 +55,7 @@ const ContactCard: FC<ContactCardProps> = ({ slice }) => {
               <span>
                 <Zap />
               </span>
-              <span>{slice.primary.subtitle}</span>
+              <span className="">{slice.primary.subtitle}</span>
             </motion.p>
 
             {/* title */}
@@ -63,7 +63,7 @@ const ContactCard: FC<ContactCardProps> = ({ slice }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1 }}
-              className="font-extrabold text-[0.8rem] md:text-2xl lg:text-4xl text-white text-center"
+              className="hidden md:flex font-extrabold text-[0.8rem] md:text-2xl lg:text-4xl text-white text-center"
             >
               {slice.primary.title}
             </motion.h1>
@@ -76,7 +76,7 @@ const ContactCard: FC<ContactCardProps> = ({ slice }) => {
             >
               <PrismicNextLink
                 field={slice.primary.link_url}
-                className="w-[fit-content] hidden md:flex items-center bg-green border border-black rounded-full py-2 px-4 space-x-4 group/button focus:outline-none"
+                className="w-[fit-content] flex items-center bg-green border border-black rounded-full py-2 px-4 space-x-4 group/button focus:outline-none"
               >
                 <p className="text-black font-medium">
                   {slice.primary.link_text}

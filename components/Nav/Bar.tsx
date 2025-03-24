@@ -32,17 +32,19 @@ export const Navbar = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="flex space-x-2 items-center text-[1rem] md:text-2xl font-bold text-white"
+            className="flex space-x-2 items-center text-[1.125rem] md:text-2xl font-bold text-white"
           >
-              <Image
-                src="/images/avana-logo.png"
-                alt="avana-logo"
-                width={50}
-                height={50}
-                className="object-contain"
-                priority
-              />
-            <span className="">Avana Energy</span>
+            <Image
+              src="/images/avana-logo.png"
+              alt="avana-logo"
+              width={50}
+              height={50}
+              className="object-contain"
+              priority
+            />
+            <span className={isOpen ? "text-white" : "rounded-full bg-black px-4 py-2 text-white"}>
+              Avana Energy
+            </span>
           </Link>
 
           {/* Toggle Menu */}
@@ -54,7 +56,7 @@ export const Navbar = () => {
             {isOpen ? (
               <X className="w-8 h-8 text-white" />
             ) : (
-              <Menu className="w-8 h-8 text-white" />
+              <Menu className="w-8 h-8 text-black" />
             )}
           </button>
 

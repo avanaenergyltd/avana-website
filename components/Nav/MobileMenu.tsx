@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { MobileNavLink } from "./MobileNavLink";
+import { usePathname } from "next/navigation";
 
 type NavItem = {
   label: string;
@@ -29,6 +30,10 @@ const containerVariants = {
 };
 
 export function MobileNavMenu() {
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
+
   return (
     <motion.div
       initial={{ scaleY: 0 }}
@@ -51,7 +56,14 @@ export function MobileNavMenu() {
       >
         {navItems.map((item, index) => (
           <div className="overflow-hidden" key={index}>
-            <MobileNavLink href={item.path} title={item.label} />
+            <MobileNavLink
+              href={item.path}
+              title={item.label}
+              className={
+                isActive(item.path) &&
+                "text-white decoration-white underline underline-offset-4"
+              }
+            />
           </div>
         ))}
       </motion.div>
