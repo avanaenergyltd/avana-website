@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type AboutDocumentDataSlicesSlice =
+  | AboutImageRightSlice
   | AboutImageSectionSlice
   | AboutCardsSlice
   | ChoiceBlockSlice
@@ -451,6 +452,71 @@ type AboutCardsSliceVariation = AboutCardsSliceDefault;
 export type AboutCardsSlice = prismic.SharedSlice<
   "about_cards",
   AboutCardsSliceVariation
+>;
+
+/**
+ * Primary content in *AboutImageRight → Default → Primary*
+ */
+export interface AboutImageRightSliceDefaultPrimary {
+  /**
+   * title field in *AboutImageRight → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_image_right.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *AboutImageRight → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_image_right.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * image field in *AboutImageRight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_image_right.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for AboutImageRight Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutImageRightSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutImageRightSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AboutImageRight*
+ */
+type AboutImageRightSliceVariation = AboutImageRightSliceDefault;
+
+/**
+ * AboutImageRight Shared Slice
+ *
+ * - **API ID**: `about_image_right`
+ * - **Description**: AboutImageRight
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutImageRightSlice = prismic.SharedSlice<
+  "about_image_right",
+  AboutImageRightSliceVariation
 >;
 
 /**
@@ -1292,6 +1358,10 @@ declare module "@prismicio/client" {
       AboutCardsSliceDefaultPrimary,
       AboutCardsSliceVariation,
       AboutCardsSliceDefault,
+      AboutImageRightSlice,
+      AboutImageRightSliceDefaultPrimary,
+      AboutImageRightSliceVariation,
+      AboutImageRightSliceDefault,
       AboutImageSectionSlice,
       AboutImageSectionSliceDefaultPrimary,
       AboutImageSectionSliceVariation,

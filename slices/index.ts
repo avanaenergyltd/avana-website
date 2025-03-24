@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export const components = {
   about_cards: dynamic(() => import("./AboutCards")),
+  about_image_right: dynamic(() => import("./AboutImageRight")),
   about_image_section: dynamic(() => import("./AboutImageSection")),
   choice_block: dynamic(() => import("./ChoiceBlock")),
   contact_card: dynamic(() => import("./ContactCard")),

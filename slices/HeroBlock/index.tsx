@@ -46,7 +46,7 @@ const HeroBlock: FC<HeroBlockProps> = ({ slice }) => {
                   <motion.h1
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
                     className="font-extrabold text-2xl md:text-5xl xl:text-6xl text-white max-w-[40rem]"
                   >
                     {slice.primary.image_text}

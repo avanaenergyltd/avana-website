@@ -8,6 +8,7 @@ import { useMenu } from "./MenuContext";
 import { MobileNavMenu } from "./MobileMenu";
 import Image from "next/image";
 import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 type NavItem = {
   label: string;
@@ -26,9 +27,32 @@ export const Navbar = () => {
 
   const isActive = (path: string) => pathname === path;
 
+  const [colorChange, setColorchange] = useState(false);
+
+  useEffect(function mount() {
+    const changeNavbarColor = () => {
+      if (window.scrollY >= 80) {
+        setColorchange(true);
+      } else {
+        setColorchange(false);
+      }
+    };
+
+    window.addEventListener("scroll", changeNavbarColor);
+
+    return function unMount() {
+      window.removeEventListener("scroll", changeNavbarColor);
+    };
+  });
+
   return (
     <header>
-      <nav className="fixed top-0 left-0 w-full h-20 z-[99]">
+      <nav
+        className={clsx(
+          "fixed top-0 left-0 w-full h-20 z-[99]",
+          colorChange ? "backdrop-blur-md bg-white/30" : "bg-transparent"
+        )}
+      >
         <div className="container text-center flex items-center justify-between h-full px-4">
           {/* Logo */}
           <Link
@@ -43,7 +67,14 @@ export const Navbar = () => {
               className="object-contain"
               priority
             />
-            <span className={clsx("hidden md:flex", isOpen ? "text-white" : "rounded-full bg-black px-4 py-2 text-white")}>
+            <span
+              className={clsx(
+                "hidden md:flex",
+                isOpen
+                  ? "text-white"
+                  : "text-black"
+              )}
+            >
               Avana Energy
             </span>
           </Link>
@@ -62,7 +93,7 @@ export const Navbar = () => {
           </button>
 
           {/* Nav menu */}
-          <div className="hidden lg:flex items-center gap-6 text-black backdrop-blur-md bg-white/30 p-4 rounded-full">
+          <div className="hidden lg:flex items-center gap-6 text-black p-4 rounded-full">
             {navItems.map((item, index) => (
               <div className="text-white" key={index}>
                 <Link
