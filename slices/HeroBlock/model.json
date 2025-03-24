@@ -40,13 +40,6 @@
             "label": "image text",
             "placeholder": ""
           }
-        },
-        "section_title": {
-          "type": "Text",
-          "config": {
-            "label": "section title",
-            "placeholder": ""
-          }
         }
       },
       "items": {}

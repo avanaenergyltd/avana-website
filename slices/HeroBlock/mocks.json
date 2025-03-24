@@ -40,11 +40,6 @@
 				"__TYPE__": "FieldContent",
 				"value": "skill",
 				"type": "Text"
-			},
-			"section_title": {
-				"__TYPE__": "FieldContent",
-				"value": "office",
-				"type": "Text"
 			}
 		},
 		"items": []

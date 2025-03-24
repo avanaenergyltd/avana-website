@@ -32,7 +32,7 @@ export const Navbar = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="flex space-x-2 items-center text-[1.125rem] md:text-2xl font-bold text-white"
+            className="flex space-x-2 items-center text-[1.125rem] md:text-2xl font-medium text-white"
           >
             <Image
               src="/images/avana-logo.png"

@@ -44,18 +44,18 @@ const ContactCard: FC<ContactCardProps> = ({ slice }) => {
           />
 
           {/* text */}
-          <div className="absolute z-[3] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-y-8">
+          <div className="absolute z-[3] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-[70vw] flex flex-col justify-center items-center gap-y-3 md:gap-y-8">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.25 }}
               viewport={{ once: true }}
-              className="hidden md:flex text-xl w-[fit-content] text-white backdrop-blur-md bg-white/30 px-4 rounded-full py-2 space-x-2"
+              className="flex text-xl w-[fit-content] text-white backdrop-blur-md bg-white/30 px-4 rounded-full py-1 md:py-2 space-x-2"
             >
               <span>
                 <Zap />
               </span>
-              <span className="">{slice.primary.subtitle}</span>
+              <span className="text-[1rem]">{slice.primary.subtitle}</span>
             </motion.p>
 
             {/* title */}
@@ -63,7 +63,7 @@ const ContactCard: FC<ContactCardProps> = ({ slice }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1 }}
-              className="hidden md:flex font-extrabold text-[0.8rem] md:text-2xl lg:text-4xl text-white text-center"
+              className="flex font-extrabold text-[0.9rem] md:text-2xl lg:text-4xl text-white text-center"
             >
               {slice.primary.title}
             </motion.h1>
