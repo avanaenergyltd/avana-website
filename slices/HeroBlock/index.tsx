@@ -22,12 +22,42 @@ const HeroBlock: FC<HeroBlockProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="pt-32"
+      className="md:pt-32"
     >
-      <div className="container">
+      <div className="">
         <div className="flex flex-col gap-y-8">
+          {/* image in mobile view */}
+          <div className="flex md:hidden">
+            <Reveal initialY={-10} delay={0.1}>
+              <div className="relative">
+                <div className="bg-black/20 w-full h-full absolute z-[2] inset-0 bg-gradient-to-b from-transparent from-60% to-black lg:from-30%"></div>
+
+                {/* Image */}
+                <PrismicNextImage
+                  field={slice.primary.image}
+                  width={slice.primary.image.dimensions?.width}
+                  height={slice.primary.image.dimensions?.height}
+                  className="mb-4"
+                  placeholder="blur"
+                  blurDataURL={getBlurSvg}
+                />
+
+                <div className="absolute z-[3] bottom-4 left-0 px-4 sm:px-8 xl:px-[6.75rem] py-4 lg:py-8">
+                  <motion.h1
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 1 }}
+                    className="font-extrabold text-2xl md:text-5xl xl:text-6xl text-white max-w-[40rem]"
+                  >
+                    {slice.primary.image_text}
+                  </motion.h1>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
           <Reveal initialY={10}>
-            <div className="grid lg:grid-cols-2 gap-4 justify-between">
+            <div className="grid lg:grid-cols-2 gap-4 justify-between container">
               <h1
                 className="font-extrabold text-2xl md:text-4xl lg:text-6xl
             xl:text-6xl max-w-[40rem]"
@@ -38,32 +68,35 @@ const HeroBlock: FC<HeroBlockProps> = ({ slice }) => {
             </div>
           </Reveal>
 
-          <Reveal initialY={-10} delay={0.1}>
-            <div className="relative">
-              <div className="bg-black/20 w-full h-full absolute z-[2] inset-0 bg-gradient-to-b from-transparent from-60% to-black lg:from-30% rounded-lg"></div>
+          {/* image desktop */}
+          <div className="hidden md:flex">
+            <Reveal initialY={-10} delay={0.1}>
+              <div className="relative">
+                <div className="bg-black/20 w-full h-full absolute z-[2] inset-0 bg-gradient-to-b from-transparent from-60% to-black lg:from-30%"></div>
 
-              {/* Image */}
-              <PrismicNextImage
-                field={slice.primary.image}
-                width={slice.primary.image.dimensions?.width}
-                height={slice.primary.image.dimensions?.height}
-                className="rounded-lg mb-4"
-                placeholder="blur"
-                blurDataURL={getBlurSvg}
-              />
+                {/* Image */}
+                <PrismicNextImage
+                  field={slice.primary.image}
+                  width={slice.primary.image.dimensions?.width}
+                  height={slice.primary.image.dimensions?.height}
+                  className="mb-4"
+                  placeholder="blur"
+                  blurDataURL={getBlurSvg}
+                />
 
-              <div className="absolute z-[3] bottom-4 left-0 px-4 sm:px-8 xl:px-[6.75rem] py-4 lg:py-8">
-                <motion.h1
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 1 }}
-                  className="font-extrabold text-2xl md:text-5xl xl:text-6xl text-white max-w-[40rem]"
-                >
-                  {slice.primary.image_text}
-                </motion.h1>
+                <div className="absolute z-[3] bottom-4 left-0 px-4 sm:px-8 xl:px-[6.75rem] py-4 lg:py-8">
+                  <motion.h1
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 1 }}
+                    className="font-extrabold text-2xl md:text-5xl xl:text-6xl text-white max-w-[40rem]"
+                  >
+                    {slice.primary.image_text}
+                  </motion.h1>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

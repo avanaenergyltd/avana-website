@@ -4,7 +4,12 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type AboutDocumentDataSlicesSlice = ContactCardSlice | HeroBlockSlice;
+type AboutDocumentDataSlicesSlice =
+  | AboutImageSectionSlice
+  | AboutCardsSlice
+  | ChoiceBlockSlice
+  | ContactCardSlice
+  | HeroBlockSlice;
 
 /**
  * Content for About documents
@@ -367,6 +372,151 @@ export type AllDocumentTypes =
   | FooterDocument
   | HomeDocument
   | ServicesDocument;
+
+/**
+ * Item in *AboutCards → Default → Primary → items*
+ */
+export interface AboutCardsSliceDefaultPrimaryItemsItem {
+  /**
+   * title field in *AboutCards → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_cards.default.primary.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *AboutCards → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_cards.default.primary.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *AboutCards → Default → Primary*
+ */
+export interface AboutCardsSliceDefaultPrimary {
+  /**
+   * title field in *AboutCards → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_cards.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * items field in *AboutCards → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_cards.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<AboutCardsSliceDefaultPrimaryItemsItem>>;
+}
+
+/**
+ * Default variation for AboutCards Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutCardsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutCardsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AboutCards*
+ */
+type AboutCardsSliceVariation = AboutCardsSliceDefault;
+
+/**
+ * AboutCards Shared Slice
+ *
+ * - **API ID**: `about_cards`
+ * - **Description**: AboutCards
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutCardsSlice = prismic.SharedSlice<
+  "about_cards",
+  AboutCardsSliceVariation
+>;
+
+/**
+ * Primary content in *AboutImageSection → Default → Primary*
+ */
+export interface AboutImageSectionSliceDefaultPrimary {
+  /**
+   * title field in *AboutImageSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_image_section.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *AboutImageSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_image_section.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * image field in *AboutImageSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_image_section.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for AboutImageSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutImageSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutImageSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AboutImageSection*
+ */
+type AboutImageSectionSliceVariation = AboutImageSectionSliceDefault;
+
+/**
+ * AboutImageSection Shared Slice
+ *
+ * - **API ID**: `about_image_section`
+ * - **Description**: AboutImageSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutImageSectionSlice = prismic.SharedSlice<
+  "about_image_section",
+  AboutImageSectionSliceVariation
+>;
 
 /**
  * Item in *ChoiceBlock → Default → Primary → items*
@@ -1137,6 +1287,15 @@ declare module "@prismicio/client" {
       ServicesDocumentData,
       ServicesDocumentDataSlicesSlice,
       AllDocumentTypes,
+      AboutCardsSlice,
+      AboutCardsSliceDefaultPrimaryItemsItem,
+      AboutCardsSliceDefaultPrimary,
+      AboutCardsSliceVariation,
+      AboutCardsSliceDefault,
+      AboutImageSectionSlice,
+      AboutImageSectionSliceDefaultPrimary,
+      AboutImageSectionSliceVariation,
+      AboutImageSectionSliceDefault,
       ChoiceBlockSlice,
       ChoiceBlockSliceDefaultPrimaryItemsItem,
       ChoiceBlockSliceDefaultPrimary,

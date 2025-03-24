@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useMenu } from "./MenuContext";
 import { MobileNavMenu } from "./MobileMenu";
 import Image from "next/image";
+import clsx from "clsx";
 
 type NavItem = {
   label: string;
@@ -42,7 +43,7 @@ export const Navbar = () => {
               className="object-contain"
               priority
             />
-            <span className={isOpen ? "text-white" : "rounded-full bg-black px-4 py-2 text-white"}>
+            <span className={clsx("hidden md:flex", isOpen ? "text-white" : "rounded-full bg-black px-4 py-2 text-white")}>
               Avana Energy
             </span>
           </Link>
